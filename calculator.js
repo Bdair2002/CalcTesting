@@ -1,6 +1,20 @@
 function calc(a, operator, b) {
-  if (operator === "+") {
-    return a + b;
+  switch (operator) {
+    case "+":
+      return a + b;
+      break;
+
+    case "-":
+      return a - b;
+      break;
+
+    case "*":
+      return a * b;
+      break;
+
+    case "/":
+      return a / b;
+      break;
   }
 }
 
