@@ -26,3 +26,18 @@ it("should return the correct quotient of two numbers", () => {
 it("should throw an error when dividing by zero", () => {
   expect(() => calc(6, "/", 0)).toThrow("Division by zero");
 });
+
+// Test case: Negative numbers
+it("should handle negative numbers correctly", () => {
+  expect(calc(-8, "+", 5)).toBe(-3);
+});
+
+// Test case: Decimal numbers
+it("should handle decimal numbers correctly", () => {
+  expect(calc(3.5, "*", 2)).toBe(7);
+});
+
+// Test case: Order of operations
+it("should follow the correct order of operations", () => {
+  expect(calc(2, "+", 3, "*", 4)).toBe(14);
+});
