@@ -13,6 +13,7 @@ function calc(a, operator, b) {
       break;
 
     case "/":
+      if (b === 0) throw new Error("Division by zero");
       return a / b;
       break;
   }
