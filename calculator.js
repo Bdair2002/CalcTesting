@@ -7,17 +7,22 @@ function calc(...args) {
     if (typeof args[i] === "number") {
       tokens.push(args[i]);
     } else if (typeof args[i] === "string") {
-      if (!isNaN(Number(args[i]))) throw new Error("Invalid input type");
-      if (!validOperators.includes(args[i]))
+      if (!isNaN(Number(args[i]))) {
+        throw new Error("Invalid input type");
+      }
+      if (!validOperators.includes(args[i])) {
         throw new Error("Invalid operator");
-      else tokens.push(args[i]);
-    }
+      } else tokens.push(args[i]);
+    } else throw new Error("Invalid input type");
+
     if (
       typeof tokens[tokens.length - 1] === "string" &&
       typeof tokens[tokens.length - 2] === "string"
-    )
+    ) {
       throw new Error("Invalid operator order");
+    }
   }
+
   const afterMultDiv = [];
 
   for (let i = 0; i < tokens.length; i++) {
@@ -43,11 +48,7 @@ function calc(...args) {
   for (let i = 1; i < afterMultDiv.length; i += 2) {
     const operator = afterMultDiv[i];
     const next = afterMultDiv[i + 1] > 1000 ? 0 : afterMultDiv[1 + i];
-    if (operator === "+") {
-      result += next;
-    } else if (operator === "-") {
-      result -= next;
-    }
+    result = operator === "+" ? result + next : result - next;
   }
   return result;
 }

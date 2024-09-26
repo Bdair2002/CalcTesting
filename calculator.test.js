@@ -47,6 +47,7 @@ describe("Calculator", () => {
   // Test case: Invalid input type
   it("should throw an error for invalid input types", () => {
     expect(() => calc("2", "+", 3)).toThrow("Invalid input type");
+    expect(() => calc(true, "+", 3)).toThrow("Invalid input type");
   });
 
   // Test case: Unknown number of inputs
@@ -63,9 +64,10 @@ describe("Calculator", () => {
   // Test case: Larger than 1000
   it("should ignore numbers that are greater than 1000", () => {
     expect(calc(2, "+", 1001)).toBe(2);
-    expect(calc(15, "*", 1002)).toBe(15);
     expect(calc(10, "+", 1002, "-", 5, "*", 1003)).toBe(5);
+    expect(calc(1500, "-", 12)).toBe(-12);
     expect(calc(1002, "/", 1001)).toBe(1);
+    expect(calc(1002, "*", 5)).toBe(5);
   });
   // Test Empty Arguments
   it("should return 0 when no arguments are passed", () => {
