@@ -61,10 +61,14 @@ describe("Calculator", () => {
   });
 
   // Test case: Larger than 1000
-  it("Numbers greater than 1000 should be ignored", () => {
+  it("should ignore numbers that are greater than 1000", () => {
     expect(calc(2, "+", 1001)).toBe(2);
     expect(calc(15, "*", 1002)).toBe(15);
     expect(calc(10, "+", 1002, "-", 5, "*", 1003)).toBe(5);
     expect(calc(1002, "/", 1001)).toBe(1);
+  });
+  // Test Empty Arguments
+  it("should return 0 when no arguments are passed", () => {
+    expect(calc()).toBe(0);
   });
 });
