@@ -21,22 +21,27 @@ function calc(...args) {
 
   for (let i = 0; i < tokens.length; i++) {
     if (tokens[i] === "*") {
-      const left = afterMultDiv.pop();
-      const right = tokens[++i];
+      let left = afterMultDiv.pop();
+      left = left > 1000 ? 1 : left;
+      let right = tokens[++i];
+      right = right > 1000 ? 1 : right;
       afterMultDiv.push(left * right);
     } else if (tokens[i] === "/") {
-      const left = afterMultDiv.pop();
-      const right = tokens[++i];
+      let left = afterMultDiv.pop();
+      left = left > 1000 ? 1 : left;
+      let right = tokens[++i];
+      right = right > 1000 ? 1 : right;
       if (right === 0) throw new Error("Division by zero");
       afterMultDiv.push(left / right);
     } else {
       afterMultDiv.push(tokens[i]);
     }
   }
-  let result = afterMultDiv[0];
+  let result = afterMultDiv[0] > 1000 ? 0 : afterMultDiv[0];
+
   for (let i = 1; i < afterMultDiv.length; i += 2) {
     const operator = afterMultDiv[i];
-    const next = afterMultDiv[i + 1];
+    const next = afterMultDiv[i + 1] > 1000 ? 0 : afterMultDiv[1 + i];
     if (operator === "+") {
       result += next;
     } else if (operator === "-") {
