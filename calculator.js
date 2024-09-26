@@ -11,6 +11,11 @@ function calc(...args) {
         throw new Error("Invalid operator");
       else tokens.push(args[i]);
     }
+    if (
+      typeof tokens[tokens.length - 1] === "string" &&
+      typeof tokens[tokens.length - 2] === "string"
+    )
+      throw new Error("Invalid operator order");
   }
   const afterMultDiv = [];
 

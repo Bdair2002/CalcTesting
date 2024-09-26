@@ -48,4 +48,15 @@ describe("Calculator", () => {
   it("should throw an error for invalid input types", () => {
     expect(() => calc("2", "+", 3)).toThrow("Invalid input type");
   });
+
+  // Test case: Unknown number of inputs
+  it("should accept unknown number of inputs and follow the correct order of operations", () => {
+    expect(calc(10, "/", 5, "-", 1, "*", 5, "+", 1)).toBe(-2);
+    expect(calc(1, "*", 8, "/", 2, "+", 3)).toBe(7);
+  });
+
+  // Test case: Contiguous operators
+  it("should not have two contiguous operators", () => {
+    expect(() => calc(2, "/", "+", 3)).toThrow("Invalid operator order");
+  });
 });
