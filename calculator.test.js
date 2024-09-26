@@ -41,3 +41,7 @@ it("should handle decimal numbers correctly", () => {
 it("should follow the correct order of operations", () => {
   expect(calc(2, "+", 3, "*", 4)).toBe(14);
 });
+// Test case: Invalid operator
+it("should throw an error for an invalid operator", () => {
+  expect(() => calc(5, "$", 3)).toThrow("Invalid operator");
+});

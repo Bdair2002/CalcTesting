@@ -1,5 +1,17 @@
 function calc(...args) {
-  let tokens = args;
+  const validOperators = ["+", "-", "*", "/"];
+  let tokens = [];
+  for (let i = 0; i < args.length; i++) {
+    if (
+      typeof args[i] === "number" ||
+      (typeof args[i] === "string" && validOperators.includes(args[i]))
+    ) {
+      tokens.push(args[i]);
+    } else {
+      throw new Error("Invalid operator");
+    }
+  }
+
   const afterMultDiv = [];
 
   for (let i = 0; i < tokens.length; i++) {
